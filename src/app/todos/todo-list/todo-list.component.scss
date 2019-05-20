@@ -1,0 +1,9 @@
+// :host refers to the whole component
+:host {
+	display: block; // so that the margin can be applied to this compnent
+	margin-top: 16px;
+
+	.info-text {
+		text-align: center;
+	}
+}

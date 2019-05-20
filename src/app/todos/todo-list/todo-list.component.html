@@ -1,0 +1,8 @@
+<mat-list *ngIf="todos.length > 0">
+<!--<mat-list *ngIf="todo$ | async as todo">-->
+	<span *ngFor="let todo of todos">
+	<mat-list-item>{{ todo.content }}</mat-list-item>
+	<mat-divider></mat-divider>
+	</span>	
+</mat-list>
+<p class="info-text mat-body-1" *ngIf="todos.length <= 0">Nothing Todo Yet!</p>

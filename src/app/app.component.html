@@ -1,0 +1,11 @@
+<app-header></app-header>
+<main>
+  <!-- $event gives you access to the data emitted 
+    create is listening to the todoCreated event 
+    data is passed down to list 
+    Angular automatically detects when a new todo is created -->
+  <app-todo-create (todoCreated)="onTodoAdded($event)"></app-todo-create>
+  <app-todo-list [todos]="storedTodos"></app-todo-list>
+</main>
+
+

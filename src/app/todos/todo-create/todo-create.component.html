@@ -1,0 +1,28 @@
+<!-- square bracket - Angular can then target the property and bind the value in "" to that property. -->
+<!-- matInput is from the angular material library; provides styling. Needs mat-form-field tag around the input to work -->
+<!-- Two way binding achieved with ngModel (an Angular 'directive' - an instruction on an html element - both listens to user input and stores new data in the element) -->
+<!-- ngForm gives us access to the form object-->
+<mat-card>
+	<form (submit)="onAddTodo(todoForm)" #todoForm="ngForm">
+	<mat-form-field>
+		<textarea
+			matInput 
+			ngModel
+			name="content"
+			required
+			#content=ngModel>
+		</textarea>
+		<mat-error *ngIf="content">Please enter a Todo</mat-error>
+	</mat-form-field>
+	<button 
+		mat-raised-button
+		color="accent" 
+		type="submit">Save Todo</button>
+	</form>
+</mat-card>
+
+
+
+
+<!-- using hooks to display - string interpolation -->
+<p>{{ newTodo }}</p>
