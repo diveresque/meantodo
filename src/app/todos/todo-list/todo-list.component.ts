@@ -4,6 +4,9 @@ import { TodoService } from '../../todo.service';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Http } from '@angular/http';
+import { List } from 'immutable';
+import { Observable } from 'rxjs';
+import { interval } from 'rxjs';
 
 @Component({
 	selector: 'app-todo-list',
@@ -12,26 +15,23 @@ import { Http } from '@angular/http';
 	providers: [TodoService]
 })
 export class TodoListComponent implements OnInit {
-	// todos = [
-	// 	{ content: "This is the First Todo" },
-	// 	{ content: "This is the Second Todo" }
-	// ];
-	@Input() public todos: Todo[] = [];
-	//todos: Todo[] = [];
 
-	//private readonly refreshToken$ = new BehaviorSubject(undefined);
-	//private readonly task$ = this.refreshToken$.pipe(
-    //switchMap(() => this._http.get('/api/todos')));
+	@Input() public todos: Observable<Todo[]>;
 
-	constructor(private _todoService: TodoService){}
+    //private _todosList: BehaviorSubject<List<Todo>> = new BehaviorSubject(List([]));
+
+	constructor(private _todoService: TodoService){
+		
+	}
 
 	getTodos() {
-		console.log('get todos');
-		this._todoService.getTodos()
-			.subscribe((resTodoData) => {this.todos = resTodoData; console.log(resTodoData); });
+		console.log('get todos: ' + this.todos);
+		this.todos = interval(1000)
+						.pipe(
+						switchMap(() => this._todoService.getTodos())
+						);
 
-		//this.refreshToken$.next(undefined);
-		console.log('end todos');
+		console.log('end todos: ' + this.todos);
 
 	}
 

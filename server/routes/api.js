@@ -9,7 +9,7 @@ var db = mongoose.connect("mongodb://localhost:27017/AngularCRUD", function(err,
 });
 
 router.get('/todos', function(req, res){
-	console.log('Get request for all todos');
+	//console.log('Get request for all todos');
 	Todo.find({})
 		.exec(function(err, todos){
 			if(err){
